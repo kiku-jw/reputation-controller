@@ -1,0 +1,23 @@
+.env
+.env.*
+!.env.example
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+*.pyc
+.DS_Store
+node_modules/
+dist/
+
+# Local controller/runtime state.
+.controller/
+.agent/
+.omx/
+workspace/
+*.log
+
+# Runtime state lives at the workspace root by default.
+../.controller/state/
+../.controller/tasks/
+../.controller/evidence/

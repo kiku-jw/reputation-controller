@@ -1,0 +1,212 @@
+{
+  "workspace": "..",
+  "state_dir": ".controller/state",
+  "dry_run": true,
+  "github_timeout_seconds": 30,
+  "limits": {
+    "max_active_sprints": 1,
+    "max_active_targets": 3,
+    "max_open_hypotheses": 5
+  },
+  "policy": {
+    "allow_public_comments": false,
+    "allow_pr_create": false,
+    "allow_force_push": false,
+    "public_action_mode": "none",
+    "public_pr_draft_only": true,
+    "public_action_cooldown_hours": 24,
+    "max_open_controller_prs_per_repo": 1,
+    "forbidden_title_terms": ["codex"]
+  },
+  "worker": {
+    "allow_execution": false,
+    "timeout_seconds": 1800
+  },
+  "paid_platforms": [
+    {
+      "name": "opire",
+      "provider": "opire",
+      "enabled": true,
+      "endpoint_url": "https://api.opire.dev/rewards",
+      "min_reward_cents": 10000,
+      "max_trying_users": 3,
+      "max_claimer_users": 0,
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ],
+      "languages_allow": [
+        "Python",
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "Go"
+      ],
+      "title_deny_terms": [
+        "redesign",
+        "rewrite",
+        "roadmap",
+        "proposal",
+        "rfc",
+        "support for",
+        "integration",
+        "migration",
+        "new design"
+      ]
+    }
+  ],
+  "repos": [
+    {
+      "name": "fossasia/visdom",
+      "local_path": "visdom",
+      "default_branch": "dev",
+      "enabled": true,
+      "worker_enabled": true,
+      "proof_commands": [
+        "python3 -m py_compile py/visdom/utils/server_utils.py",
+        "python3 -m black --check py/visdom/utils/server_utils.py"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "Giskard-AI/giskard-oss",
+      "local_path": "giskard-oss",
+      "default_branch": "main",
+      "enabled": true,
+      "worker_enabled": true,
+      "worker_issue_allow": [
+        2511
+      ],
+      "proof_commands": [
+        "GISKARD_TELEMETRY_DISABLED=true uv run pytest libs/giskard-checks/tests/core/test_suite.py -q",
+        "GISKARD_TELEMETRY_DISABLED=true make test-unit PACKAGE=giskard-checks"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "NVIDIAGameWorks/kaolin",
+      "local_path": "kaolin",
+      "default_branch": "master",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "python3 -m pytest -q"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "NVIDIAGameWorks/dxvk-remix",
+      "local_path": "dxvk-remix",
+      "default_branch": "main",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "python3 -m pytest -q"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "NVIDIAGameWorks/rtx-remix",
+      "local_path": "rtx-remix",
+      "default_branch": "main",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "python3 -m pytest -q"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "fossasia/eventyay",
+      "local_path": "eventyay",
+      "default_branch": "dev",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "UV_CACHE_DIR=/tmp/uv-cache-eventyay uv run python -m pytest tests/eventyay_common -q",
+        "UV_CACHE_DIR=/tmp/uv-cache-eventyay uv run ruff check tests/eventyay_common"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "fossasia/pslab-app",
+      "local_path": "pslab-app",
+      "default_branch": "main",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "./gradlew test"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "fossasia/badgemagic-app",
+      "local_path": "badgemagic-app",
+      "default_branch": "development",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "./gradlew test"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    },
+    {
+      "name": "fossasia/voxbento",
+      "local_path": "voxbento",
+      "default_branch": "main",
+      "enabled": true,
+      "worker_enabled": false,
+      "proof_commands": [
+        "python3 -m pytest -q"
+      ],
+      "labels_deny": [
+        "dependencies",
+        "dependency",
+        "release",
+        "good first issue"
+      ]
+    }
+  ]
+}
