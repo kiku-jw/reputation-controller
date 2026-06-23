@@ -6,8 +6,16 @@ The controller is not a PR spammer. It enforces WIP locks, creates bounded task
 packets, watches GitHub Actions, and keeps public actions disabled until the
 config explicitly allows them.
 
-Primary CTA: validate the example config and render local status before
-enabling any worker or public-action flags.
+**[Validate the example config](#setup)**
+
+[Docs](#current-v0) · [Examples](#commands) · [Expected output](#expected-output)
+
+Sample output:
+
+```text
+validate: ok
+status: dry_run=true, public actions disabled
+```
 
 ```bash
 PYTHONPATH=src python3 -m reputation_controller --config config/controller.example.json validate
