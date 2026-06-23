@@ -6,6 +6,17 @@ The controller is not a PR spammer. It enforces WIP locks, creates bounded task
 packets, watches GitHub Actions, and keeps public actions disabled until the
 config explicitly allows them.
 
+Primary CTA: validate the example config and render local status before
+enabling any worker or public-action flags.
+
+```bash
+PYTHONPATH=src python3 -m reputation_controller --config config/controller.example.json validate
+PYTHONPATH=src python3 -m reputation_controller --config config/controller.example.json status
+```
+
+Expected result: a local status/digest readout. The default configuration keeps
+public actions disabled.
+
 ## Current v0
 
 - Local Python CLI using only stdlib plus the external `gh` CLI.
@@ -75,6 +86,13 @@ python3 -m reputation_controller --config config/controller.example.json loop --
 ```
 
 Use `PYTHONPATH=src` unless the package is installed editable.
+
+## Expected Output
+
+The controller writes local state and evidence under `.controller/` only after
+commands that need runtime artifacts. Read-only commands such as `validate`,
+`status`, `scout`, `repo-health`, `workflow-preflight`, and
+`target-admission` should not post comments or open PRs.
 
 ## Repo Target Modes
 
